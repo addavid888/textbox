@@ -160,70 +160,70 @@ function App() {
     }
   };
 
-  const handleExport = () => {
-    try {
-      const dataStr = JSON.stringify(notes, null, 2);
-      const dataBlob = new Blob([dataStr], { type: "application/json" });
-      const url = URL.createObjectURL(dataBlob);
-      const link = document.createElement("a");
-      link.href = url;
-      link.download = "notes_v1.json";
-      link.click();
-      URL.revokeObjectURL(url);
-    } catch (error) {
-      console.error(error);
+  // const handleExport = () => {
+  //   try {
+  //     const dataStr = JSON.stringify(notes, null, 2);
+  //     const dataBlob = new Blob([dataStr], { type: "application/json" });
+  //     const url = URL.createObjectURL(dataBlob);
+  //     const link = document.createElement("a");
+  //     link.href = url;
+  //     link.download = "notes_v1.json";
+  //     link.click();
+  //     URL.revokeObjectURL(url);
+  //   } catch (error) {
+  //     console.error(error);
 
-      setToast({
-        message: "Export failed",
-        type: "error",
-      });
-    }
-  };
+  //     setToast({
+  //       message: "Export failed",
+  //       type: "error",
+  //     });
+  //   }
+  // };
 
-  const handleImport = (event) => {
-    const file = event.target.files[0];
-    if (!file) return;
+  // const handleImport = (event) => {
+  //   const file = event.target.files[0];
+  //   if (!file) return;
 
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      try {
-        const importedNotes = JSON.parse(e.target.result);
-        if (!Array.isArray(importedNotes)) {
-          throw new Error("Invalid format");
-        }
+  //   const reader = new FileReader();
+  //   reader.onload = (e) => {
+  //     try {
+  //       const importedNotes = JSON.parse(e.target.result);
+  //       if (!Array.isArray(importedNotes)) {
+  //         throw new Error("Invalid format");
+  //       }
 
-        // Merge by ID, overwrite existing
-        const existingIds = new Set(notes.map((n) => n.id));
-        const mergedNotes = [...notes];
+  //       // Merge by ID, overwrite existing
+  //       const existingIds = new Set(notes.map((n) => n.id));
+  //       const mergedNotes = [...notes];
 
-        importedNotes.forEach((importedNote) => {
-          if (existingIds.has(importedNote.id)) {
-            const index = mergedNotes.findIndex(
-              (n) => n.id === importedNote.id
-            );
-            mergedNotes[index] = importedNote;
-          } else {
-            mergedNotes.push(importedNote);
-          }
-        });
+  //       importedNotes.forEach((importedNote) => {
+  //         if (existingIds.has(importedNote.id)) {
+  //           const index = mergedNotes.findIndex(
+  //             (n) => n.id === importedNote.id
+  //           );
+  //           mergedNotes[index] = importedNote;
+  //         } else {
+  //           mergedNotes.push(importedNote);
+  //         }
+  //       });
 
-        setNotes(mergedNotes);
-        setToast({
-          message: "Import successful",
-          type: "success",
-        });
-      } catch (error) {
-      console.error(error);
+  //       setNotes(mergedNotes);
+  //       setToast({
+  //         message: "Import successful",
+  //         type: "success",
+  //       });
+  //     } catch (error) {
+  //     console.error(error);
 
-        setToast({
-          message: "Import failed: invalid format",
-          type: "error",
-        });
-      }
-    };
-    reader.readAsText(file);
-    event.target.value = "";
-  };
+  //       setToast({
+  //         message: "Import failed: invalid format",
+  //         type: "error",
+  //       });
+  //     }
+  //   };
+  //   reader.readAsText(file);
+  //   event.target.value = "";
+  // };
 
   const handleOpenSpotlight = useCallback(() => {
     setIsSpotlightOpen(true);

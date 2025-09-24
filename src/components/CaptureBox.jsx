@@ -18,7 +18,7 @@ export default function CaptureBox({
 }) {
   const isMac = navigator.platform.toUpperCase().indexOf("MAC") >= 0;
   const [text, setText] = useState("");
-  // const [isRestoredDraft, setIsRestoredDraft] = useState(false);
+  const [isRestoredDraft, setIsRestoredDraft] = useState(false);
   const [settings, setSettings] = useState(() => {
     return getItem(SETTINGS_KEY) || DEFAULT_SETTINGS;
   });
@@ -331,6 +331,10 @@ export default function CaptureBox({
       )}
 
       <div className="capture-hint">
+
+      {isRestoredDraft && (
+         <div className="draft-indicator">Restored unsaved draft</div>
+    )}
         <div className="capture-hint-left">
           <span>
             <kbd>{isMac ? "⌘" : "Ctrl"}</kbd>{" "}
