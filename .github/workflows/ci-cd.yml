@@ -24,7 +24,7 @@ jobs:
         run: npm ci
 
       - name: Cache node modules
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
@@ -74,7 +74,7 @@ jobs:
           CI: false
 
       - name: Upload build artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: build-files
           path: dist/
@@ -111,21 +111,18 @@ jobs:
           CI: false
 
       - name: Setup Pages
-        uses: actions/configure-pages@v3
+        uses: actions/configure-pages@v4
 
       - name: Upload to GitHub Pages
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-pages-artifact@v3
         with:
           path: dist/
 
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v2
-        with:
+        uses: actions/deploy-pages@v4
+        with: 
           token: ${{ secrets.GITHUB_TOKEN }}
-          # Ensure the token has the necessary permissions
-          # to deploy to GitHub Pages.
-          # The default GITHUB_TOKEN has sufficient permissions.
 
   # Job 5: Security audit
   security:
