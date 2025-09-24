@@ -18,7 +18,7 @@ export default function CaptureBox({
 }) {
   const isMac = navigator.platform.toUpperCase().indexOf("MAC") >= 0;
   const [text, setText] = useState("");
-  const [isRestoredDraft, setIsRestoredDraft] = useState(false);
+  // const [isRestoredDraft, setIsRestoredDraft] = useState(false);
   const [settings, setSettings] = useState(() => {
     return getItem(SETTINGS_KEY) || DEFAULT_SETTINGS;
   });
@@ -276,7 +276,7 @@ export default function CaptureBox({
     };
   };
 
-  const isDisabled = !text.trim();
+  // const isDisabled = !text.trim();
 
   return (
     <div className="capture-box">

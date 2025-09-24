@@ -28,6 +28,7 @@ function App() {
       const loadedNotes = loadNotes();
       setNotes(loadedNotes);
     } catch (error) {
+      console.error(error);
       setToast({
         message: "Storage corrupted. Reset.",
         type: "error",
@@ -102,6 +103,7 @@ function App() {
         setNotes(updatedNotes);
       }
     } catch (error) {
+      console.error(error);
       setToast({
         message: "Failed to save note",
         type: "error",
@@ -136,6 +138,7 @@ function App() {
       const updatedNotes = updateNote(updatedNote);
       setNotes(updatedNotes);
     } catch (error) {
+      console.error(error);
       setToast({
         message: "Failed to update note",
         type: "error",
@@ -148,6 +151,8 @@ function App() {
       const updatedNotes = deleteNote(noteId);
       setNotes(updatedNotes);
     } catch (error) {
+      console.error(error);
+
       setToast({
         message: "Failed to delete note",
         type: "error",
@@ -166,6 +171,8 @@ function App() {
       link.click();
       URL.revokeObjectURL(url);
     } catch (error) {
+      console.error(error);
+
       setToast({
         message: "Export failed",
         type: "error",
@@ -206,6 +213,8 @@ function App() {
           type: "success",
         });
       } catch (error) {
+      console.error(error);
+
         setToast({
           message: "Import failed: invalid format",
           type: "error",

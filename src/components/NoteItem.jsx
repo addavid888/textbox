@@ -13,11 +13,11 @@ export default function NoteItem({ note, onUpdate, onDelete, onEdit }) {
   const [showPopover, setShowPopover] = useState(false);
   const popoverRef = useRef(null);
 
-  const handleEdit = () => {
-    setIsEditing(true);
-    setEditText(note.text);
-    setShowPopover(false);
-  };
+  // const handleEdit = () => {
+  //   setIsEditing(true);
+  //   setEditText(note.text);
+  //   setShowPopover(false);
+  // };
 
   const handleSave = () => {
     if (editText.trim()) {
