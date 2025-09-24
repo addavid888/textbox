@@ -121,6 +121,11 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          # Ensure the token has the necessary permissions
+          # to deploy to GitHub Pages.
+          # The default GITHUB_TOKEN has sufficient permissions.
 
   # Job 5: Security audit
   security:
